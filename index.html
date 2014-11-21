@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Foo</title>
+<meta charset='utf-8' />
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
+<style type='text/css'>
+body {
+  font-family: 'Helvetica';
+  letter-spacing:-5px;
+  background:#000;
+  background-size:100%;
+  color:#fff;
+  margin:0;
+  padding:0;
+  font-weight:bold;
+}
+
+h1, h2, h3, p {
+  margin:0;
+}
+
+em, a {
+  font-style:normal;
+  color:#8dbd0c;
+}
+
+a {
+  background: #34d0e7;
+  color:#000;
+  text-decoration:none;
+}
+
+img {
+  width:100%;
+}
+
+div {
+  cursor:pointer;
+  cursor:hand;
+  position:absolute;
+  top:0;
+  left:0;
+}
+
+</style>
+<script type='text/javascript'>
+window.onload = function() {
+    var s = document.getElementsByTagName('div'), cur = 0, ti;
+    if (!s) return;
+    function go(n) {
+        cur = n;
+        var i = 1e3, e = s[n], t;
+        document.body.className = e.dataset.bodyclass || '';
+        for (var k = 0; k < s.length; k++) s[k].style.display = 'none';
+        e.style.display = 'inline';
+        e.style.fontSize = i + 'px';
+        if (e.firstChild && e.firstChild.nodeName === 'IMG') {
+            document.body.style.backgroundImage = 'url(' + e.firstChild.src + ')';
+            e.firstChild.style.display = 'none';
+            if ('classList' in e) e.classList.add('imageText');
+        } else {
+            document.body.style.backgroundImage = '';
+            document.body.style.backgroundColor = e.style.backgroundColor;
+        }
+        if (ti !== undefined) window.clearInterval(ti);
+        t = parseInt(e.dataset.timeToNext || 0, 10);
+        if (t > 0) ti = window.setTimeout(fwd, (t * 1000));
+        while (
+            e.offsetWidth > window.innerWidth ||
+            e.offsetHeight > window.innerHeight) {
+            e.style.fontSize = (i -= 2) + 'px';
+            if (i < 0) break;
+        }
+        e.style.marginTop = ((window.innerHeight - e.offsetHeight) / 2) + 'px';
+        if (window.location.hash !== n) window.location.hash = n;
+        document.title = e.textContent || e.innerText;
+    }
+    document.onclick = function() { go(++cur % (s.length)); };
+    function fwd() { go(Math.min(s.length - 1, ++cur)); }
+    function rev() { go(Math.max(0, --cur)); }
+    document.onkeydown = function(e) {
+        if (e.which === 39 || e.which === 34 || e.which === 40) fwd();
+        if (e.which === 37 || e.which === 33 || e.which === 38) rev();
+    };
+    document.ontouchstart = function(e) {
+        var x0 = e.changedTouches[0].pageX;
+        document.ontouchend = function(e) {
+            var x1 = e.changedTouches[0].pageX;
+            if (x1 - x0 < 0) fwd();
+            if (x1 - x0 > 0) rev();
+        };
+    };
+    function parse_hash() {
+        return Math.max(Math.min(
+            s.length - 1,
+            parseInt(window.location.hash.substring(1), 10)), 0);
+    }
+    if (window.location.hash) cur = parse_hash() || cur;
+    window.onhashchange = function() {
+        var c = parse_hash();
+        if (c !== cur) go(c);
+    };
+    go(cur);
+};
+</script></head><body>
+<div><p>Civic hacking 101</p>
+</div>
+<div><p>First things first...</p>
+<p>Who am I?</p>
+</div>
+<div><p>CPS (bureaucrat, digital projects)</p>
+<p>Starter League (learned Ruby on Rails)</p>
+<p>DivvyBrags (first civic hack)</p>
+<p>Start Up Chile (learn lots, fail lots)</p>
+<p>Code for America (2015)</p>
+</div>
+<div><p>What is civic hacking?</p>
+</div>
+<div><p>Civic</p>
+</div>
+<div><p><img src="https://farm3.staticflickr.com/2439/3950012517_f0f0ec621f_b.jpg" alt=""></p>
+</div>
+<div><p>Hacking</p>
+</div>
+<div><p><img src="https://farm6.staticflickr.com/5560/14732878728_241c9631fa_o.jpg" alt=""></p>
+</div>
+<div><p>Here are 10 ways</p>
+<p>~</p>
+<p>you can help out by civic hacking</p>
+<p>~</p>
+<p>and civic hacking can help you </p>
+</div>
+<div><p>1 Start a civic side project</p>
+</div>
+<div><p>(Personal example: DivvyBrags...)</p>
+</div>
+<div><p><img src="http://i.imgur.com/o7Jzapk.png" alt=""></p>
+</div>
+<div><p><img src="http://i.imgur.com/AIJvZB9.png" alt=""></p>
+</div>
+<div><p>Only qualification is that you care</p>
+<p>~</p>
+<p>Stirring up a wee bit of civic trouble can be good</p>
+</div>
+<div><p>2 Work at a civic tech company</p>
+<p>~</p>
+<p>A few in Chicago: Civis Analytics, 270 Strategies, DataMade, Purple Binder, Public Good Software, many more</p>
+</div>
+<div><p>Check out this (incomplete) Chicago list:</p>
+<p>www.smartchicagocollaborative.org/an-incomplete-list-of-chicago-civic-technology-groups/</p>
+</div>
+<div><p>3 Go to #opengov hack night</p>
+<p>Tuesdays, 6:00pm, 1871</p>
+</div>
+<div><p>4 Explore Chi data portals:</p>
+<p>~</p>
+<p>www.data.cityofchicago.org</p>
+<p>www.opengovhacknight.org/resources.html</p>
+</div>
+<div><p><img src="http://i.imgur.com/44PHfIa.png" alt=""></p>
+</div>
+<div><p><img src="http://i.imgur.com/PT3FDtx.png" alt=""></p>
+</div>
+<div><p>5 Open up the Civic Issue Finder</p>
+<p>www.codeforamerica.org/geeks/civicissues</p>
+</div>
+<div><p><img src="http://i.imgur.com/SuSSg1h.png" alt=""></p>
+</div>
+<div><p>Side benefits of helping out: </p>
+<p>Meet smart people and mentors</p>
+<p>Expand your tech network</p>
+<p>Build that Github profile</p>
+</div>
+<div><p>6 Respectfully redesign government </p>
+</div>
+<div><p><img src="https://pbs.twimg.com/media/BpQEO_fCQAAUmfe.jpg:large" alt=""></p>
+</div>
+<div><p>7 Join your CfA Brigade:</p>
+<p>~</p>
+<p>www.codeforamerica.org/brigade/</p>
+</div>
+<div><p>8 Start a civic tech company</p>
+<p>~</p>
+<p>...for all the future entrepreneurs in the house: Gov-focused incubators (ex. CfA Accelerator), YC &quot;RFS&quot;</p>
+</div>
+<div><p>9 Join a tech company and make it civic</p>
+<p>~</p>
+<p>Ridesharing to the polls? Facebook organ donation? There&#39;s a civic angle to everything.</p>
+</div>
+<div><p>10 Government needs web developers too...</p>
+<p>~</p>
+<p>Work for @ChicagoCTO! (Or at least follow her)</p>
+</div>
+<div><p>Attribution:</p>
+<p>~ </p>
+<p>Roman forum photo, Flickr user <a href="https://www.flickr.com/photos/life_in_megapixels/&quot;">William Hall</a>
+MIT hack photo, flickr user <a href="https://www.flickr.com/photos/rich701/">Richard</a></p>
+</div>
+<div><p>Find me on Twitter:</p>
+<p>~</p>
+<p>@alexsoble</p>
+</div>
+<div><p>Talk to me about things</p>
+<p>~</p>
+<p>CfA
+Code education
+Bikeshare
+Chicago/Chile/SF
+Good books
+etc...</p>
+</div>
+<div><p>Thanks! Now get out there and hack your city!</p>
+</div>
