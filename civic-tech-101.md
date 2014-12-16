@@ -66,7 +66,7 @@ Tuesdays, 6:00pm, 1871
 
 ~
 
-www.data.cityofchicago.org
+data.cityofchicago.org
 
 www.opengovhacknight.org/resources.html
 ---
